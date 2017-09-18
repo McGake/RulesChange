@@ -16,8 +16,10 @@ public class JmpBhvrBasic : MonoBehaviour {
 	// Update is called once per frame
 	public void DoBhvr () {
 
+
         if (IsGrounded())
         {
+            Debug.Log("was grounded");
             pStats.rb2d.AddForce(Vector2.up * pStats.playerJumpPower);
         }
 	}
@@ -32,8 +34,10 @@ public class JmpBhvrBasic : MonoBehaviour {
 
         if(rayHit.collider != null)
         {
-            if(rayHit.collider.tag == "Ground")
+            Debug.Log("not null " + rayHit.collider.tag);
+            if (rayHit.collider.tag == "Ground")
             {
+                Debug.Log("is ground");
                 return true;
             }
             
@@ -47,7 +51,6 @@ public class JmpBhvrBasic : MonoBehaviour {
             {
                 return true;
             }
-
         }
 
             return false;

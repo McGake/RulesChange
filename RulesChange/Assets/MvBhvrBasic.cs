@@ -17,8 +17,12 @@ public class MvBhvrBasic : MonoBehaviour {
         Move();
     }
 
+
+
     void Move()
     {
+
+
         pStats.moveX = Input.GetAxis("Horizontal");
 
         if (pStats.moveX < 0.0f && pStats.facingRight == false)
@@ -31,6 +35,8 @@ public class MvBhvrBasic : MonoBehaviour {
         }
 
         pStats.rb2d.velocity = new Vector2(pStats.moveX * pStats.playerSpeed, pStats.rb2d.velocity.y);
+
+
     }
 
     void FlipPlayer()

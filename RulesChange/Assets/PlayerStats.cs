@@ -19,6 +19,10 @@ public class PlayerStats : MonoBehaviour {
 
     public GameObject leftGroundPoint;
 
+
+    public GameObject leftTrigger;
+    public GameObject rightTrigger;
+
     void Awake()
     {
         

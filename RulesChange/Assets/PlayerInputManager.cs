@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum JumpBhvrs
+public enum JumpBhvrs
 {
     None = 0,
     Basic = 1,
 }
 
-enum MoveBhvrs
+public enum MoveBhvrs
 {
     None = 0,
     Basic = 1,        
+}
+
+public enum WallBhvrs
+{
+    None = 0,
+    Basic = 1,
 }
 
 public class PlayerInputManager : MonoBehaviour {
@@ -23,13 +29,20 @@ public class PlayerInputManager : MonoBehaviour {
 
     MvBhvrBasic mvBhvrBasic;
     JmpBhvrBasic jmpBhvrBasic;
+    WallBhvrBasic wallBhvrBasic;
+
+    CurRules curRules;
+
 
     void Start()
-    {        
+    {
+        curRules = GameObject.Find("CurrentRules").GetComponent<CurRules>();
         pStats = GetComponent<PlayerStats>();
         mvBhvrBasic = GetComponent<MvBhvrBasic>();
         jmpBhvrBasic = GetComponent<JmpBhvrBasic>();
-          
+        wallBhvrBasic = GetComponent<WallBhvrBasic>();
+
+
     }
 
     void CheckPlayerInput()
@@ -41,14 +54,17 @@ public class PlayerInputManager : MonoBehaviour {
 
         ChooseMove();
 
+        ChooseWallBhvr();
+
 
     }
 
     void ChooseJump()
     {
-        switch (curJmpBhvr)
+        switch (curRules.curJmpBhvr)
         {
             case JumpBhvrs.Basic:
+                Debug.Log("jump chosen");
                 jmpBhvrBasic.DoBhvr();
                 break;
         }
@@ -57,13 +73,23 @@ public class PlayerInputManager : MonoBehaviour {
 
     void ChooseMove()
     {
-        switch (curMvBhvr)
+        switch (curRules.curMvBhvr)
         {
             case MoveBhvrs.Basic:
                 mvBhvrBasic.DoBhvr();
                 break;
         }
 
+    }
+
+void ChooseWallBhvr()
+    {
+        switch (curRules.curWallBhvr)
+        {
+            case WallBhvrs.Basic:
+                wallBhvrBasic.DoBhvr();
+                break;
+        }
     }
 
 
