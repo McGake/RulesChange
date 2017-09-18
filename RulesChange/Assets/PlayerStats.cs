@@ -12,20 +12,18 @@ public class PlayerStats : MonoBehaviour {
     public Rigidbody2D rb2d;
 
     public bool onGround = false;
-
     public float distToGround;
 
     public GameObject rightGroundPoint;
-
     public GameObject leftGroundPoint;
-
 
     public GameObject leftTrigger;
     public GameObject rightTrigger;
 
+    
+
     void Awake()
-    {
-        
+    {       
         rb2d = GetComponent<Rigidbody2D>();
     }
 }

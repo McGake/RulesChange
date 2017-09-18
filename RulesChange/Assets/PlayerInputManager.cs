@@ -22,11 +22,6 @@ public enum WallBhvrs
 
 public class PlayerInputManager : MonoBehaviour {
 
-
-    PlayerStats pStats;
-    JumpBhvrs curJmpBhvr = JumpBhvrs.Basic;
-    MoveBhvrs curMvBhvr = MoveBhvrs.Basic;
-
     MvBhvrBasic mvBhvrBasic;
     JmpBhvrBasic jmpBhvrBasic;
     WallBhvrBasic wallBhvrBasic;
@@ -37,12 +32,16 @@ public class PlayerInputManager : MonoBehaviour {
     void Start()
     {
         curRules = GameObject.Find("CurrentRules").GetComponent<CurRules>();
-        pStats = GetComponent<PlayerStats>();
+        
         mvBhvrBasic = GetComponent<MvBhvrBasic>();
         jmpBhvrBasic = GetComponent<JmpBhvrBasic>();
         wallBhvrBasic = GetComponent<WallBhvrBasic>();
+    }
 
 
+    void Update()
+    {
+        CheckPlayerInput();
     }
 
     void CheckPlayerInput()
@@ -55,8 +54,6 @@ public class PlayerInputManager : MonoBehaviour {
         ChooseMove();
 
         ChooseWallBhvr();
-
-
     }
 
     void ChooseJump()
@@ -64,7 +61,6 @@ public class PlayerInputManager : MonoBehaviour {
         switch (curRules.curJmpBhvr)
         {
             case JumpBhvrs.Basic:
-                Debug.Log("jump chosen");
                 jmpBhvrBasic.DoBhvr();
                 break;
         }
@@ -79,7 +75,6 @@ public class PlayerInputManager : MonoBehaviour {
                 mvBhvrBasic.DoBhvr();
                 break;
         }
-
     }
 
 void ChooseWallBhvr()
@@ -93,9 +88,4 @@ void ChooseWallBhvr()
     }
 
 
-
-    void Update()
-    {
-        CheckPlayerInput();
-    }
 }
